@@ -1,0 +1,2 @@
+2025-08-08T12:29:07.420+05:30 ERROR 8028 --- [http-nio-8080-exec-1] c.w.Logdemo.controller.HomeController    : --Error--
+2025-08-08T12:29:07.433+05:30  WARN 8028 --- [http-nio-8080-exec-1] c.w.Logdemo.controller.HomeController    : --WARN--

@@ -1,0 +1,12 @@
+package com.wipro.paymentmicroservice.dto;
+
+public class PaymentResponse {
+    private int orderId;
+    private boolean paymentStatus;
+
+    public int getOrderId() { return orderId; }
+    public void setOrderId(int orderId) { this.orderId = orderId; }
+
+    public boolean isPaymentStatus() { return paymentStatus; }
+    public void setPaymentStatus(boolean paymentStatus) { this.paymentStatus = paymentStatus; }
+}

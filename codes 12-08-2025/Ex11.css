@@ -1,0 +1,176 @@
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-image: url("images/B1.jpeg"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: -1;
+}
+
+a {
+  text-decoration: none;
+  color: #0077cc;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+.site-header {
+  background-color: #f8f8f8;
+  padding: 15px 30px;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+
+.hero {
+  padding: 60px 30px;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.meta {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+
+.main-container {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  flex-wrap: wrap;
+  background-color: rgba(255, 255, 255, 0.9); 
+  border-radius: 8px;
+  margin: 20px;
+}
+
+.content {
+  flex: 2;
+  min-width: 300px;
+}
+
+.sidebar {
+  flex: 1;
+  min-width: 250px;
+}
+
+
+.intro {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+section img {
+  width: 100%;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+
+.cta-button {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.cta-button:hover {
+  background-color: #005fa3;
+}
+
+
+.author-box {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.author-box img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 5px;
+  font-size: 0.9rem;
+}
+
+.recent-posts ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.recent-posts li {
+  margin-bottom: 10px;
+}
+
+
+.site-footer {
+  background-color: #f8f8f8;
+  padding: 20px 30px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.footer-social a {
+  margin: 0 10px;
+  font-size: 0.9rem;
+}
+
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+}

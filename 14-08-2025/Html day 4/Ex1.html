@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Sum with Arrow Function</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      background: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sum of Array Elements</h1>
+  <div class="result" id="output"></div>
+
+  <script>
+   
+    const sumArray = arr => arr.reduce((total, num) => total + num, 0);
+
+    
+    const numbers = [5, 15, 25, 35];
+
+    const total = sumArray(numbers);
+
+    
+    document.getElementById('output').textContent = `Sum: ${total}`;
+  </script>
+
+</body>
+</html>

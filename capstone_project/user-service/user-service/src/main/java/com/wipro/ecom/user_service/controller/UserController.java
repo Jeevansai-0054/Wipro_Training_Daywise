@@ -2,6 +2,7 @@ package com.wipro.ecom.user_service.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,16 +27,17 @@ public class UserController {
 		this.service = service;
 	}
 	
-	@PostMapping
-	public User createUser(@RequestBody User user)
-	{
-		return service.saveUser(user);
-	}
+	@PostMapping("/create")  
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User createdUser = service.saveUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    }
 	
 	@GetMapping
-	public List<User> getAllUsers()
+	public ResponseEntity<List<User>> getAllUsers()
 	{
-		return service.getAllUsers();
+		List<User> users = service.getAllUsers();
+        return ResponseEntity.ok(users);
 	}
 	
 	@GetMapping("/{id}")
@@ -47,14 +49,14 @@ public class UserController {
 	}
 	
 	@PutMapping
-	public User updateUser(@RequestBody User user)
-	{
-		return service.updateUser(user);
-	}
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
+        User updatedUser = service.updateUser(user);
+        return ResponseEntity.ok(updatedUser);
+    }
 	
 	@DeleteMapping("/{id}")
-	public void deleteUser(@PathVariable Long id)
-	{
-		service.deleteUser(id);
-	}
+	public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        service.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
 }

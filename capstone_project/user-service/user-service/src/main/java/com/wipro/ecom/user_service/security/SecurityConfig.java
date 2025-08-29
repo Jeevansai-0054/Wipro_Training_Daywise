@@ -12,8 +12,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class SecurityConfig {
-	
-	private final JwtRequestFilter jwtRequestFilter;
+
+    private final JwtRequestFilter jwtRequestFilter;
     private final CustomUserDetailsService userDetailsService;
 
     public SecurityConfig(JwtRequestFilter jwtRequestFilter, CustomUserDetailsService userDetailsService) {
@@ -25,8 +25,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/user/login", "/user/register").permitAll()
-                    .anyRequest().authenticated()
+                .requestMatchers("/user/login", "/user/register").permitAll()
+                .anyRequest().authenticated()
             )
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -38,9 +38,9 @@ public class SecurityConfig {
         return authConfig.getAuthenticationManager();
     }
 
+    // Bean to encode passwords using BCrypt
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-   
 }

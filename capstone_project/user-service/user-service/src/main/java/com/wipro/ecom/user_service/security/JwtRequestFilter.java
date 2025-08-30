@@ -3,6 +3,7 @@ package com.wipro.ecom.user_service.security;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -12,7 +13,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException; // Correct import for IOException
+import java.io.IOException;
+import java.util.Collections;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -24,14 +26,21 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
     }
-
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain)
-            throws ServletException, IOException { // Use java.io.IOException here
+            throws ServletException, IOException {
 
-        final String authorizationHeader = request.getHeader("Authorization");
+        String path = request.getRequestURI();
+
+        // Skip JWT check for open endpoints
+        if (path.equals("/user/create") || path.equals("/user/login") || path.equals("/user/register")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        String authorizationHeader = request.getHeader("Authorization");
 
         String username = null;
         String jwt = null;
@@ -41,7 +50,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             try {
                 username = jwtUtil.getUsernameFromToken(jwt);
             } catch (Exception e) {
-                // Optional: log invalid JWT error here
+                // Handle invalid JWT token (optional: log error)
             }
         }
 
@@ -49,15 +58,20 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
             if (jwtUtil.validateToken(jwt, userDetails.getUsername())) {
-                UsernamePasswordAuthenticationToken token =
-                        new UsernamePasswordAuthenticationToken(
-                                userDetails, null, userDetails.getAuthorities());
-
-                token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(token);
+                String role = jwtUtil.getRoleFromToken(jwt);
+                UsernamePasswordAuthenticationToken authToken =
+                    new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role))
+                    );
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
 
         filterChain.doFilter(request, response);
     }
+
+   
 }

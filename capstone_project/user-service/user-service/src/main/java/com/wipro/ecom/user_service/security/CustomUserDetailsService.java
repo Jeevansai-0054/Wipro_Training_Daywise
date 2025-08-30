@@ -2,6 +2,7 @@ package com.wipro.ecom.user_service.security;
 
 import java.util.Collections;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 		        return new org.springframework.security.core.userdetails.User(
 		                user.getUsername(),
 		                user.getPassword(),
-		                Collections.emptyList() // Optional: add roles/authorities here
+		                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole()))// Optional: add roles/authorities here
 		        );
 		    }
 		

@@ -1,44 +1,29 @@
 package com.wipro.ecom.user_service.security;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
 
+import com.wipro.ecom.user_service.dto.AuthRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.wipro.ecom.user_service.Entity.User;
-import com.wipro.ecom.user_service.dto.AuthRequest;
-import com.wipro.ecom.user_service.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class AuthController {
 
-    private final UserService userService;
     private final JwtUtil jwtUtil;
-    private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService userDetailsService;
+    private final AuthenticationManager authenticationManager;
 
-    public AuthController(UserService userService, JwtUtil jwtUtil, AuthenticationManager authenticationManager,
-                          CustomUserDetailsService userDetailsService) {
-        this.userService = userService;
+    public AuthController(JwtUtil jwtUtil, CustomUserDetailsService userDetailsService,
+                          AuthenticationManager authenticationManager) {
         this.jwtUtil = jwtUtil;
-        this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User user) {
-        // You can add validation here as needed
-        User savedUser = userService.saveUser(user);
-        return ResponseEntity.ok(savedUser);
+        this.authenticationManager = authenticationManager;
     }
 
     @PostMapping("/login")
@@ -52,12 +37,18 @@ public class AuthController {
         }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails.getUsername());
+
+        String role = userDetails.getAuthorities().stream()
+                .findFirst()
+                .map(auth -> auth.getAuthority().replace("ROLE_", ""))
+                .orElse("CUSTOMER");
+
+        final String jwt = jwtUtil.generateToken(userDetails.getUsername(), role);
 
         return ResponseEntity.ok(new AuthResponse(jwt));
     }
 
-    // DTO for returning JWT token
+    // DTO to return JWT token
     static class AuthResponse {
         private final String jwt;
 
@@ -70,4 +61,3 @@ public class AuthController {
         }
     }
 }
-

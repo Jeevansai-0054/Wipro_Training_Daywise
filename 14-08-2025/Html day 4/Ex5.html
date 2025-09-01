@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vehicle and Car Classes</title>
+</head>
+<body>
+
+  <h2>Vehicle Info</h2>
+  <div id="output"></div>
+
+  <script>
+   
+    class Vehicle {
+      constructor(make, model, year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+      }
+
+      getInfo() {
+        return `Make: ${this.make}, Model: ${this.model}, Year: ${this.year}`;
+      }
+    }
+
+   
+    class Car extends Vehicle {
+      constructor(make, model, year, numDoors) {
+        super(make, model, year);
+        this.numDoors = numDoors;
+      }
+
+      
+      getInfo() {
+        return `${super.getInfo()}, Doors: ${this.numDoors}`;
+      }
+    }
+
+  
+    const vehicle = new Vehicle('Honda', 'Civic', 2020);
+    const car = new Car('Toyota', 'Camry', 2022, 4);
+
+    const output = `
+      Vehicle Info: ${vehicle.getInfo()}<br>
+      Car Info: ${car.getInfo()}
+    `;
+
+    document.getElementById('output').innerHTML = output;
+  </script>
+
+</body>
+</html>

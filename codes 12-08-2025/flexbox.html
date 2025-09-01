@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flexbox Shopping Layout with Images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 30px;
+    }
+
+    .column {
+      flex: 1;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 6px;
+    }
+
+    .history-link {
+      margin-top: 20px;
+      display: block;
+      color: blue;
+      text-decoration: underline;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="column">
+      <h2>Pick up where you left off</h2>
+      <ul>
+        <li>
+          <img src="images/gloves.jpeg" alt="XTRIM Gloves">
+          XTRIM X-Macho Leather Gym Gloves
+        </li>
+        <li>
+          <img src="images/koba gloves.jpg" alt="Kobo Gloves">
+          Kobo WTG-05 Leather Gym Gloves
+        </li>
+        <li>
+          <img src="images/ten" alt="19.ten Gloves">
+          19.ten Leather Gym Gloves
+        </li>
+        <li>
+          <img src="images/brogbus.jpeg" alt="BROGBUS Gloves">
+          BROGBUS Neoprene Wrist Support Gloves
+        </li>
+      </ul>
+    </div>
+
+    
+    <div class="column">
+      <h2>Keep shopping for</h2>
+      <ul>
+        <li>
+          <img src="images/phones.jpeg" alt="Smartphones">
+          Smartphones & basic mobiles (2 viewed)
+        </li>
+        <li>
+          <img src="images/kurtha.jpeg" alt="Kurtas">
+          Women's kurtas & kurtis (2 viewed)
+        </li>
+        <li>
+          <img src="images/mustoche.jpeg" alt="Beard Care">
+          Men's beard & moustache care (1 viewed)
+        </li>
+        <li>
+          <img src="images/cooktop.jpeg" alt="Cooktops">
+          Induction cooktops (5 viewed)
+        </li>
+      </ul>
+      <a href="#" class="history-link">View your browsing history</a>
+    </div>
+  </div>
+
+</body>
+</html>

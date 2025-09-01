@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Double Numbers</title>
+</head>
+<body>
+
+  <h2>Double Array Elements</h2>
+  <div id="output"></div>
+
+  <script>
+    
+    const doubleNumbers = arr => arr.map(num => num * 2);
+
+    const inputArray = [1, 2, 3, 4];
+
+    const doubled = doubleNumbers(inputArray);
+
+   
+    document.getElementById('output').textContent = `Doubled: [${doubled.join(', ')}]`;
+  </script>
+
+</body>
+</html>

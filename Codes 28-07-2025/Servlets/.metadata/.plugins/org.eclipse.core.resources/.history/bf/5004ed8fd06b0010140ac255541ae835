@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module wiprosessions {
+	requires org.junit.jupiter.api;
+}

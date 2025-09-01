@@ -1,0 +1,9 @@
+.text-container {
+  width: 500px;
+  border: 2px solid #333;
+  margin: 150px 0 0 200px;       /* top right bottom left — pushes the box far down and right */
+  padding: 40px 60px 30px 150px; /* top right bottom left — adds lots of space inside the box */
+  font-size: 20px;
+  background-color: #e0f7fa;
+  color: #333;
+}

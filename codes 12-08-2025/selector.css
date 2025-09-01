@@ -1,0 +1,28 @@
+
+* {
+    font-family: Arial, sans-serif;
+    color: gray;
+}
+
+/* Group selector */
+h1, h2 {
+    color: blue;
+    text-align: left;
+}
+
+/* Class selector */
+.class1 {
+    color: green;
+    font-weight: bold;
+}
+
+/* ID selector */
+#Header{
+    color: red;
+    font-size: 32px;
+}
+
+h3 {
+    background-color: #051606;
+    padding: 10px;
+}

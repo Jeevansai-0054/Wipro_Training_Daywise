@@ -1,0 +1,21 @@
+# Ignore build outputs 
+target/ 
+build/ 
+ECHO is on.
+# Ignore Angular build/cache 
+.angular/ 
+dist/ 
+node_modules/ 
+ECHO is on.
+# Ignore IDE/project settings 
+.idea/ 
+.vscode/ 
+*.iml 
+target/
+.angular/
+dist/
+node_modules/
+build/
+.idea/
+.vscode/
+*.iml

@@ -1,0 +1,27 @@
+body {
+  background: linear-gradient(to right, #74ebd5, #9face6);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-box {
+  background-color: #ffffff;
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-box h2 {
+  color: #333;
+}
+
+.login-box .form-label {
+  font-weight: 500;
+}
+
+.login-box .btn-primary {
+  background-color: #4a69bd;
+  border: none;
+}
+
+.login-box .btn-primary:hover {
+  background-color: #3b5b9d;
+}

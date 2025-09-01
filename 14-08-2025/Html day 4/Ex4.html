@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BankAccount Class Demo</title>
+</head>
+<body>
+
+  <h2>Bank Account Operations</h2>
+  <div id="output"></div>
+
+  <script>
+    
+    class BankAccount {
+      constructor(accountNumber, balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+      }
+
+      
+      deposit(amount) {
+        if (amount > 0) {
+          this.balance += amount;
+          return `Deposited ₹${amount}. New balance: ₹${this.balance}`;
+        } else {
+          return `Invalid deposit amount.`;
+        }
+      }
+
+      
+      withdraw(amount) {
+        if (amount <= 0) {
+          return `Invalid withdrawal amount.`;
+        } else if (amount > this.balance) {
+          return `Insufficient balance. Current balance: ₹${this.balance}`;
+        } else {
+          this.balance -= amount;
+          return `Withdrew ₹${amount}. New balance: ₹${this.balance}`;
+        }
+      }
+    }
+
+    
+    const account = new BankAccount('1234567890', 1000);
+    const actions = [
+      account.deposit(500),
+      account.withdraw(300),
+      account.withdraw(1500),
+      account.deposit(-100),
+      account.withdraw(0)
+    ];
+
+    // Display results
+    document.getElementById('output').innerHTML = actions.join('<br>');
+  </script>
+
+</body>
+</html>

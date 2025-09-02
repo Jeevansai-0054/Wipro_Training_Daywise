@@ -1,21 +1,23 @@
-# Ignore build outputs 
-target/ 
-build/ 
-ECHO is on.
-# Ignore Angular build/cache 
-.angular/ 
-dist/ 
-node_modules/ 
-ECHO is on.
-# Ignore IDE/project settings 
-.idea/ 
-.vscode/ 
-*.iml 
+# Ignore build outputs
 target/
+build/
+
+# Ignore Angular build/cache
 .angular/
 dist/
 node_modules/
-build/
+
+# Ignore IDE/project settings
 .idea/
 .vscode/
 *.iml
+
+# Ignore video and large media files
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
